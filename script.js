@@ -5,8 +5,11 @@ const refs = {
 
 const eventScrollCounter = {
   standart: 0,
-  throttled: 0,
+  throttle: 0,
 };
+
+window.addEventListener("scroll", handleScroll);
+window.addEventListener("scroll", _.throttle(handleScrollThrottle, 300));
 
 function handleScroll() {
   console.log("kkk");
@@ -16,9 +19,6 @@ function handleScroll() {
 
 function handleScrollThrottle() {
   console.log("jjj");
-  eventScrollCounter.throttled += 1;
-  refs.outputScrollThrottled.textContent = eventScrollCounter.throttled;
+  eventScrollCounter.throttle += 1;
+  refs.outputScrollThrottled.textContent = eventScrollCounter.throttle;
 }
-
-window.addEventListener("scroll", handleScroll);
-window.addEventListener("scroll", _.throttle(handleScrollThrottle, 300));
