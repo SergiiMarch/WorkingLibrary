@@ -8,6 +8,46 @@
     <title>Document</title>
   </head>
   <body>
+    <form id="signForm">
+      <fieldset>
+        <legend>Sign in</legend>
+        <label
+          >Email
+          <input
+            type="text"
+            id="inputEmail"
+            placeholder="Email"
+            data-min-length="2"
+            data-max-length="38"
+            =""
+          />
+        </label>
+
+        <label
+          >Password
+          <input
+            type="password"
+            id="inputPassword"
+            placeholder="Password"
+            name="password"
+            data-min-length="5"
+            data-max-length="18"
+        /></label>
+
+        <label
+          >Telephone
+          <input
+            type="tel"
+            id="inputPassword"
+            placeholder="+380"
+            name="tel"
+            data-min-length="13"
+            data-max-length="13"
+        /></label>
+        <button type="button">SEND FORM</button>
+      </fieldset>
+    </form>
+
     <!-- <form>
       <div>
         <input
