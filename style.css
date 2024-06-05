@@ -89,3 +89,11 @@ button {
   border-radius: 8px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 }
+button:hover {
+  background-color: darkkhaki;
+}
+
+.list {
+  font-size: 25px;
+  color: rgb(15, 242, 151);
+}
