@@ -1,12 +1,12 @@
-const refs = {
-  outputScrollStandart: document.getElementById("outputScrollStandart"),
-  outputScrollThrottled: document.getElementById("outputScrollThrottled"),
-};
+// const refs = {
+//   outputScrollStandart: document.getElementById("outputScrollStandart"),
+//   outputScrollThrottled: document.getElementById("outputScrollThrottled"),
+// };
 
-const eventScrollCounter = {
-  standart: 0,
-  throttle: 0,
-};
+// const eventScrollCounter = {
+//   standart: 0,
+//   throttle: 0,
+// };
 
 // window.addEventListener("scroll", handleScroll);
 // window.addEventListener("scroll", _.throttle(handleScrollThrottle, 300));
@@ -101,37 +101,95 @@ const eventScrollCounter = {
 //   console.log("keydown:", e);
 // });
 
-const buttonEl = document.querySelector(".js-clear");
-const loglist = document.querySelector(".log-list");
+// const buttonEl = document.querySelector(".js-clear");
+// const loglist = document.querySelector(".log-list");
 
-let keyPressCounter = 1;
+// let keyPressCounter = 1;
 
-document.addEventListener("keydown", logMessage);
-document.addEventListener("keyup", logMessage);
-buttonEl.addEventListener("click", reset);
+// document.addEventListener("keydown", logMessage);
+// document.addEventListener("keyup", logMessage);
+// buttonEl.addEventListener("click", reset);
 
-function logMessage({ type, key, code }) {
-  const markup = `<div class="log-item">
-  <span class="chip">${keyPressCounter}</span>
-  <ul>
-  <li><b>Event</b>:${type}</li>
-<li><b>Key</b>:${key}</li>
-<li><b>Code</b>:${code}</li>
-  </ul>
+// function logMessage({ type, key, code }) {
+//   const markup = `<div class="log-item">
+//   <span class="chip">${keyPressCounter}</span>
+//   <ul>
+//   <li><b>Event</b>:${type}</li>
+// <li><b>Key</b>:${key}</li>
+// <li><b>Code</b>:${code}</li>
+//   </ul>
 
-</div>`;
+// </div>`;
 
-  loglist.insertAdjacentHTML("afterbegin", markup);
+//   loglist.insertAdjacentHTML("afterbegin", markup);
 
-  if (type === "keyup") {
-    incrementKeypressCounter();
-  }
+//   if (type === "keyup") {
+//     incrementKeypressCounter();
+//   }
+// }
+
+// function reset() {
+//   keyPressCounter = 1;
+//   loglist.innerHTML = "";
+// }
+// function incrementKeypressCounter() {
+//   keyPressCounter += 1;
+// }
+
+// Виконується першоюconst
+
+// .catch((error) => {
+//   console.log(error);
+// });
+console.log(undefined);
+const btn = document.querySelector(".js-set");
+const div = document.querySelector(".js-div");
+const clearBtn = document.querySelector(".js-clear");
+btn.addEventListener("click", onClick);
+clearBtn.addEventListener("click", onClear);
+
+function fetchBtn() {
+  fetch("https://jsonplaceholder.typicode.com/photos")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data); // Виводить дані в консоль
+      renderPhotos(data); // Викликає функцію для рендерингу карток
+    })
+    .catch((error) => console.log("Fetch error:", error));
 }
 
-function reset() {
-  keyPressCounter = 1;
-  loglist.innerHTML = "";
+function onClick(e) {
+  e.preventDefault();
+  fetchBtn();
 }
-function incrementKeypressCounter() {
-  keyPressCounter += 1;
+
+function renderPhotos(photos) {
+  // Очищаємо div перед додаванням нових карток
+  div.innerHTML = "";
+
+  // Додаємо максимум 10 карток для прикладу
+  photos.forEach((photo) => {
+    const markup = `
+      <div class="card">
+        <div class="card-img-top">
+          <img src="${photo.url}" alt="${photo.title}" width=360px>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">${photo.title}</h5>
+        </div>
+      </div>
+    `;
+
+    // Додаємо картку в div
+    div.insertAdjacentHTML("beforeend", markup);
+  });
+}
+
+function onClear() {
+  div.innerHTML = "";
 }

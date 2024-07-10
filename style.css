@@ -97,3 +97,10 @@ button:hover {
   font-size: 25px;
   color: rgb(15, 242, 151);
 }
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
